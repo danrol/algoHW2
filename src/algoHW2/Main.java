@@ -6,13 +6,18 @@ public class Main {
 	 public static int search(int value, int[] a, int hi) {
 		 //using binary search this function searches for biggest integer in array which is smaller than value (kinda maximum smaller)
 		 	
-		 if(value > a[hi]) {
-	            return VERY_BIG_NUM;
-	        }
+//		 if(a[0]>value && a[0] != VERY_BIG_NUM) {
+//	            return VERY_BIG_NUM;
+//	        }
 		 
+		 int originalHi = hi;
+//		 if (hi-1 <= 0)
+//			 return VERY_BIG_NUM;
+//		 
+//		 	hi = hi-1;
 	        int lo = 0;
 
-	        while (lo <= hi) {
+	        while (lo <= hi && lo >=0 ) {
 	            int mid = (hi + lo) / 2;
 
 	            if (value < a[mid]) {
@@ -20,34 +25,50 @@ public class Main {
 	            } else if (value > a[mid]) {
 	                lo = mid + 1;
 	            } else {
+	            	
+	            	if(mid >= originalHi)
+	            		mid = mid-1;
+	            	
 	                return mid;
 	            }
 	        } 
-	        	
-	        if (a[lo] <= value && a[hi]> value)
+	        
+	        
+	        if (lo < a.length && a[lo] <= value && a[hi]> value)
 	        	return lo;
-	        else
+	        else {
+	        	if(hi >= originalHi)
+            		hi = hi-1;
 	        	return hi;
+	        }
 	 }
 	
 	public static int optimal_ride_num(int[] w, int W){
 		System.out.println("\n");
 		//counts how many rides with containers was performed
+		System.out.println("Maximum weight is: "+ W);
 		int ridesNum = 0;
 		
 		//index of the biggest not used container for each iteration(ride)
-		int endIndex = w.length-1;
+		int endIndex = w.length;
 		
 		//will contain value from w[endIndex]
 		int endValue;
 		
 		String containersTakenThisRide;
 		//Check that truck is able to transfer biggest container
-		if(w[endIndex]> W)
-			throw new RuntimeException("Array value "+w[endIndex]+" is bigger than maximum allowed number "+W);
+		if(w[endIndex-1]> W) {
+//			throw new RuntimeException("Array value "+w[endIndex]+" is bigger than maximum allowed number "+W);
+			return 0;
+		}
 		
 		//While endIndex bigger or equal to 0 , w[endIndex] != VERY_BIG_NUM
-		while(endIndex >=0 && w[endIndex] != VERY_BIG_NUM) {
+		while(endIndex >0) {
+
+			endIndex--;
+			if(w[endIndex] == VERY_BIG_NUM)
+				continue;
+
 			containersTakenThisRide = "";
 			int secondIndex = VERY_BIG_NUM;
 			
@@ -59,6 +80,7 @@ public class Main {
 				 
 					if (secondIndex != VERY_BIG_NUM && secondIndex >=0) {
 						
+//						if(secondIndex ==)
 						containersTakenThisRide = containersTakenThisRide + String.valueOf(w[secondIndex]);
 
 						//in transfered cell we'll put very big integer so it won't be used in binary search
@@ -67,13 +89,13 @@ public class Main {
 			}
 			
 			containersTakenThisRide ="ride number: " +ridesNum+" Containers used for this ride: "+ 
-			containersTakenThisRide +" "+ String.valueOf(w[endIndex]);
+			containersTakenThisRide +" "+ String.valueOf(endValue);
 			
 			//Print ride number, and which containers was used for this ride
 			System.out.println(containersTakenThisRide);
 			w[endIndex] = VERY_BIG_NUM;
 			ridesNum++;
-			endIndex--;
+
 //			every time cell was transfered by truck cell is filled with very big integer
 		}
 		
@@ -166,7 +188,7 @@ public class Main {
     } 
 	public static void main(String[] args) {
 
-		int arr[] = {12,10, 3, 20, 15, 5, 14, 6}; 
+		int arr[] = {4, 13, 12, 10, 8, 150}; 
 		  
         System.out.println("Given Array"); 
         printArray(arr); 
@@ -176,7 +198,7 @@ public class Main {
         System.out.println("\nSorted array"); 
         printArray(arr);
         
-        System.out.println("\nNumber Of Rides performed for Array: " + optimal_ride_num(arr, 20));
+        System.out.println("\nNumber Of Rides performed for Array: " + optimal_ride_num(arr, 50));
 	}
 
 }
