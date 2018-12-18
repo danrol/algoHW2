@@ -41,9 +41,6 @@ public class Main {
 		//will contain value from w[endIndex]
 		int endValue;
 		
-		//counts how much cells was already transfered
-//		int cellsTransfered = 0;
-		
 		String containersTakenThisRide;
 		//Check that truck is able to transfer biggest container
 		if(w[endIndex]> W)
@@ -69,7 +66,8 @@ public class Main {
 					}
 			}
 			
-			containersTakenThisRide ="ride number: " +ridesNum+" Containers used for this ride: "+ containersTakenThisRide +" "+ String.valueOf(w[endIndex]);
+			containersTakenThisRide ="ride number: " +ridesNum+" Containers used for this ride: "+ 
+			containersTakenThisRide +" "+ String.valueOf(w[endIndex]);
 			
 			//Print ride number, and which containers was used for this ride
 			System.out.println(containersTakenThisRide);
