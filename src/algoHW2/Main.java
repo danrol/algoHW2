@@ -5,16 +5,9 @@ public class Main {
 	 final static int VERY_BIG_NUM = Integer.MAX_VALUE;
 	 public static int search(int value, int[] a, int hi) {
 		 //using binary search this function searches for biggest integer in array which is smaller than value (kinda maximum smaller)
-		 	
-//		 if(a[0]>value && a[0] != VERY_BIG_NUM) {
-//	            return VERY_BIG_NUM;
-//	        }
-		 
+		 		 
 		 int originalHi = hi;
-//		 if (hi-1 <= 0)
-//			 return VERY_BIG_NUM;
-//		 
-//		 	hi = hi-1;
+
 	        int lo = 0;
 
 	        while (lo <= hi && lo >=0 ) {
@@ -58,7 +51,6 @@ public class Main {
 		String containersTakenThisRide;
 		//Check that truck is able to transfer biggest container
 		if(w[endIndex-1]> W) {
-//			throw new RuntimeException("Array value "+w[endIndex]+" is bigger than maximum allowed number "+W);
 			return 0;
 		}
 		
