@@ -1,6 +1,6 @@
 package algoHW2;
 
-public class Main {
+public class Ex1 {
 
 	 final static int VERY_BIG_NUM = Integer.MAX_VALUE;
 	 public static int search(int value, int[] a, int hi) {
@@ -14,6 +14,7 @@ public class Main {
 	            int mid = (hi + lo) / 2;
 
 	            if (value < a[mid]) {
+//	            	return mid-1;
 	                hi = mid - 1;
 	            } else if (value > a[mid]) {
 	                lo = mid + 1;
@@ -50,7 +51,8 @@ public class Main {
 		
 		String containersTakenThisRide;
 		//Check that truck is able to transfer biggest container
-		if(w[endIndex-1]> W) {
+		//Check that weights are positive numbers
+		if(w[endIndex-1]> W || w[0]<0) {
 			return 0;
 		}
 		
@@ -79,7 +81,6 @@ public class Main {
 						w[secondIndex] = VERY_BIG_NUM;
 					}
 			}
-			
 			containersTakenThisRide ="ride number: " +ridesNum+" Containers used for this ride: "+ 
 			containersTakenThisRide +" "+ String.valueOf(endValue);
 			
@@ -87,10 +88,8 @@ public class Main {
 			System.out.println(containersTakenThisRide);
 			w[endIndex] = VERY_BIG_NUM;
 			ridesNum++;
-
 //			every time cell was transfered by truck cell is filled with very big integer
 		}
-		
 		return ridesNum;
 	}
 	
@@ -180,8 +179,9 @@ public class Main {
     } 
 	public static void main(String[] args) {
 
-		int arr[] = {4, 13, 12, 10, 8, 150}; 
-		  
+		int arr[] = {4, 13, 12, 11, 8, 150, 70, 30,48, 18, -1}; 
+//		int arr[] = {15, 8, 10, 12, 13, 4}; 
+
         System.out.println("Given Array"); 
         printArray(arr); 
   
@@ -190,7 +190,7 @@ public class Main {
         System.out.println("\nSorted array"); 
         printArray(arr);
         
-        System.out.println("\nNumber Of Rides performed for Array: " + optimal_ride_num(arr, 50));
+        System.out.println("\nNumber Of Rides performed for Array: " + optimal_ride_num(arr, 151));
 	}
 
 }
