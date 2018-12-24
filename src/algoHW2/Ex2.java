@@ -24,7 +24,7 @@ public class Ex2 {
 	}
 
 	public static void main(String[] args) {
-		int[] arrayOfHeights = new int[]{0,3, 5, 1, 8}; //player starts from zero, that's why 0 is first value
+		int[] arrayOfHeights = new int[]{0,3, 5, 1, 8, 23,26}; //player starts from zero, that's why 0 is first value
 		
 		System.out.println("\nMinimal energy needed: " + findMinEnergyNeededToFinish(arrayOfHeights));
 	}
